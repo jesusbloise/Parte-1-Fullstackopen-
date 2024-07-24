@@ -7,20 +7,28 @@ const Button = (props) => (
 )
 
 const App = () => {
-  // const [value, setValue] = useState(10)
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  // const setToValue = (newValue) => {
-  //   console.log('value now', newValue) //imprime el nuevo valor en la consola
-  //   setValue(newValue)
-  // }
+  
   const setToGood = (newValue) => {
     console.log('value now', newValue)
     setGood(newValue)
   }
- 
+  const setToNeutral = (newValue) => {
+    console.log('value now', newValue);
+    setNeutral(newValue);
+  };
+
+  const setToBad = (newValue) => {
+    console.log('value now', newValue);
+    setBad(newValue);
+  };
+  const total = good + neutral + bad;
+  const average = total === 0 ? 0 : (good - bad) / total;
+  const positivePercentage = total === 0 ? 0 : (good / total) * 100;
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -31,6 +39,9 @@ const App = () => {
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
+      <p>total {total}</p>
+      <p>average {average.toFixed(2)}</p>
+      <p>positive {positivePercentage.toFixed(2)}%</p>
     </div>
   )
 }
