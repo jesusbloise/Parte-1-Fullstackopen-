@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 const Button = ({ handleClick, text }) => (
@@ -74,6 +73,17 @@ const App = () => {
     setVotes(copy);
   };
 
+  const getMostVotedAnecdote = () => {
+    const maxVotes = Math.max(...votes);
+    const indexOfMostVoted = votes.indexOf(maxVotes);
+    return {
+      anecdote: anecdotes[indexOfMostVoted],
+      votes: maxVotes
+    };
+  };
+
+  const mostVoted = getMostVotedAnecdote();
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -84,9 +94,12 @@ const App = () => {
       <h2>Anecdote of the day</h2>
       <Anecdote anecdote={anecdotes[selected]} votes={votes[selected]} />
       <Button handleClick={handleVote} text='vote' />
-      <Button handleClick={handleClickAnecdote} text='Next anecdote' />
+      <Button handleClick={handleClickAnecdote} text='Show random anecdote' />
+      <h2>Anecdote with most votes</h2>
+      <Anecdote anecdote={mostVoted.anecdote} votes={mostVoted.votes} />
     </div>
   );
 };
 
 export default App;
+
