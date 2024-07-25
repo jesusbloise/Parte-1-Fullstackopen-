@@ -1,5 +1,3 @@
-import React from 'react';
-
 const App = () => {
   const course = {
     id: 1,
@@ -19,11 +17,6 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
-      },
-      {
-        name: 'Redux',
-        exercises: 11,
-        id: 4
       }
     ]
   };
@@ -68,11 +61,19 @@ const Part = ({ part }) => {
 };
 
 const Total = ({ parts }) => {
-  const total = parts.reduce((sum, part) => sum + part.exercises, 0);
+  const total = parts.reduce((sum, part) => {
+    console.log('Current sum:', sum);
+    console.log('Current part:', part);
+    return sum + part.exercises;
+  }, 0);
+
+  console.log('Total exercises:', total);
+
   return (
     <p>Total exercises: {total}</p>
   );
 };
 
 export default App;
+
 
